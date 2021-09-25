@@ -93,22 +93,35 @@ function createGalleryMarkup(items) {
 }
 // console.log(galleryElems);
 
+
 function OnGalleryItemClick(evt) {
     if (!evt.target.classList.contains('gallery__image')) {
         return
     };
-    evt.preventDefault()
 
-    modalWindow.classList.add('is-open');
-    image.src = evt.target.dataset.source;
-    image.alt = evt.target.alt;
+    evt.preventDefault()
+   
+    openModalWindow(evt)
 };
+
+function openModalWindow(evt) {
+    modalWindow.classList.add('is-open');
+    changeAtributes(evt.target.dataset.source, evt.target.alt)
+}
+
+function changeAtributes(src, alt){
+    image.setAttribute('src', src);
+    image.setAttribute('alt', alt)
+}
 
 
 closeBtn.addEventListener('click', closeModalWindow);
 
 function closeModalWindow(evt) {
     modalWindow.classList.remove('is-open');
-    image.src = '';
-    image.alt = '';
+    changeAtributes('', '');
 }
+
+
+
+
